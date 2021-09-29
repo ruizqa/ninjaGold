@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ninja Gold</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+</head>
+<body>
+    
+    <nav class="navbar navbar-expand-lg bg-dark navbar-dark py-3 fixed-top">
+        <div class="container">
+          <a href="#" class="fs-3 navbar-brand">Ninja Gold</a>
+        </div>
+    </nav>
+
+    <section class="py-4 bg-secondary"></section>
+
+    <section class="py-5 bg-secondary">
+        <div class="container">
+            <div class="col-md-10 col-sm-12 g-3 text-white text-center">
+
+                <div class="row my-2">
+                    <div class="col-md-8 col-lg-6 fs-4 d-flex flex-row justify-between align-items-center">
+                        <span>Your Gold:</span>
+                        <input type="number" class="m-3" value="{{ session['gold'] }}" disabled readonly>
+                    </div>
+                </div>
+
+                <div class="row text-white g-1">
+                    <div class="col card bg-dark">
+                        <img src="{{url_for('static', filename='img/farm.png')}}" alt="Farm" class="img-thumbnail m-2">
+                        <div class="card-body">
+                            <form method="POST" action="/process_money">
+                                <input type="hidden" name="which" value="farm">
+                                <div class="fs-5 card-title">Farm</div>
+                                <p class="card-text">(earns 10-20 golds)</p>
+                                <input type="submit" class="btn btn-primary" value="Find Gold!" >
+                            </form>
+                        </div>
+                        
+                    </div>
+                    <div class="col card bg-dark">
+                        <img src="{{url_for('static', filename='img/cave.png')}}" alt="Cave" class="img-thumbnail m-2">
+                        <div class="card-body">
+                            <form method="POST" action="/process_money">
+                                <input type="hidden" name="which" value="cave">
+                                <div class="fs-5 card-title">Cave</div>
+                                <p class="card-text">(earns 5-10 golds)</p>
+                                <input type="submit" class="btn btn-primary" value="Find Gold!" >
+                            </form>
+                        </div>
+                        
+                    </div>
+                    <div class="col card bg-dark">
+                        <img src="{{url_for('static', filename='img/home.png')}}" alt="House" class="img-thumbnail m-2">
+                        <div class="card-body">
+                            <form method="POST" action="/process_money">
+                                <input type="hidden" name="which" value="house">
+                                <div class="fs-5 card-title">House</div>
+                                <p class="card-text">(earns 2-5 golds)</p>
+                                <input type="submit" class="btn btn-primary" value="Find Gold!" >
+                            </form>
+                        </div>
+                        
+                    </div>
+                    <div class="col card bg-dark">
+                        <img src="{{url_for('static', filename='img/casino.jpg')}}" alt="Casino" class="img-thumbnail m-2">
+                        <div class="card-body">
+                            <form method="POST" action="/process_money">
+                                <input type="hidden" name="which" value="casino">
+                                <div class="fs-5 card-title">Casino</div>
+                                <p class="card-text">(earns/takes 0-50 golds)</p>
+                                <input type="submit" class="btn btn-primary" value="Find Gold!" >
+                            </form>
+                        </div>
+                        
+                    </div>
+
+                </div>
+
+
+            </div>
+
+        </div>
+    </section>
+
+
+    <section>
+        <div class="container">
+            <div class="col-md-10 col-sm-12 g-3 text-start">
+
+                <div class="fs-3 text-primary">Activities:</div>
+                <div contenteditable="true" style="width: 100%; max-height: 100px;" class="border border-dark p-3 my-2 overflow-auto">
+                    {{ session['log']|safe }}
+                </div>
+            
+
+            </div> 
+
+        </div>
+
+    </section>
+
+    <footer class="p-1 bg-dark text-white text-center position-relative">
+        <div class="container">
+          <p class="lead">Coding Dojo Web Dev Practice Assignment</p>
+        </div>
+    </footer>
+
+</body>
+</html>
